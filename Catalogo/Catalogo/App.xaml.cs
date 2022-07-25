@@ -10,7 +10,8 @@ namespace Catalogo
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new AppShell();
+            //MainPage.SetValue(NavigationPage.BarBackgroundProperty, Color.Black);
         }
 
         protected override void OnStart ()

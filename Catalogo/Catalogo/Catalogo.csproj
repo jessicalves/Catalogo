@@ -13,5 +13,29 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="IOSToolbarExtensions" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Model\" />
+    <None Remove="Controller\" />
+    <None Remove="View\" />
+    <None Remove="Services\" />
+    <None Remove="Font\" />
+    <None Remove="Font\Material\" />
+    <None Remove="IOSToolbarExtensions" />
+    <None Remove="Font\Material\MaterialIcons-Regular.ttf" />
+    <None Remove="Newtonsoft.Json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Font\" />
+    <Folder Include="Font\Material\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Font\Material\MaterialIcons-Regular.ttf" />
   </ItemGroup>
 </Project>
