@@ -49,7 +49,7 @@
                                                     <Label Text="{Binding Price}" FontSize="16" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand" Margin="5,0,0,10"/>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Button Command="{Binding ComandLess}" TextColor="White" Text="_" FontSize="25" FontAttributes="Bold" BackgroundColor="Gray" WidthRequest="50" Padding="0,-25,0,0" Margin="0,-10,0,10"/>
-                                                        <Button Command="{Binding ComandPlus}" TextColor="Yellow" Text="+" FontSize="20" FontAttributes="Bold" BackgroundColor="Black" WidthRequest="50" Padding="0,5,0,5" Margin="0,-10,0,10"/>
+                                                        <Button Command="{Binding ComandPlus}" TextColor="#FFFE9D" Text="+" FontSize="20" FontAttributes="Bold" BackgroundColor="Black" WidthRequest="50" Padding="0,5,0,5" Margin="0,-10,0,10"/>
                                                     </StackLayout>
                                                 </FlexLayout>
                                             </Grid>
