@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:iostoolbarextensions="clr-namespace:IOSToolbarExtensions;assembly=iOSToolbarExtensions"
+    Title="Catálogo"
+    
+    x:Class="Catalogo.Views.CatalogoPage">
+
+    <ContentPage.ToolbarItems>
+        <OnPlatform x:TypeArguments="ToolbarItem">
+            <On Platform="iOS">
+                <iostoolbarextensions:LeftHandToolbarItem Text="Filtro" Order="Primary" Priority="0"/>
+            </On>
+            <On Platform="Android">
+                <ToolbarItem Text="Filtro" IconImageSource="filter_list.png" Order="Primary" Priority="0" />
+            </On>
+        </OnPlatform>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout x:Name="layMain" BackgroundColor="#EEF0F5"/>
+    </ContentPage.Content>
+</ContentPage>
+

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Catalogo.View.ItensCatalogoView">
+    <ContentView.Content>
+        <CollectionView x:Name="CvPromocao" ItemsLayout="VerticalList" ItemsSource="{Binding Promocoes}" VerticalScrollBarVisibility="Always">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout BackgroundColor="#EEF0F5">
+                        <Label Text="{Binding Name}" TextColor="Gray" FontSize="16" Margin="10,30,10,5"/>
+                        <CollectionView x:Name="CvProduto" ItemsSource="{Binding Produtos}" ItemsLayout="VerticalList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <ScrollView>
+                                        <Frame BackgroundColor="White" HeightRequest="170" Margin="10" HasShadow="False">
+                                            <Grid  RowSpacing="0" ColumnSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-10">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                    <ColumnDefinition Width="0.5*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
+                                                <Image Grid.Column="0" Grid.RowSpan="3" HorizontalOptions="StartAndExpand" Margin="0,5,0,-60" VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="300">
+                                                    <Image.Source>
+                                                        <UriImageSource Uri="{Binding Photo}" CachingEnabled="True" CacheValidity="14"/>
+                                                    </Image.Source>
+                                                </Image>
+                                                <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="5,0,0,0">
+                                                    <Label  Grid.Row="1" Text="{Binding Name}" MaxLines="1" Margin="0,5,0,0" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                                                    <Label Grid.Row="2" Text="{Binding Description}" MaxLines="7" HorizontalTextAlignment="Start" FontSize="10" FontAttributes="Bold"/>
+                                                    <Label Grid.Row="3" BackgroundColor="Red" FontSize="10" Text="{Binding InfoDesconto}" HorizontalOptions="StartAndExpand" Margin="0,10,0,0" TextColor="White"/>
+                                                </StackLayout>
+                                                <ImageButton Command="{Binding CommandFavorite}" Grid.Column="2" Grid.Row="1" Margin="30,-40,0,50" BackgroundColor="White">
+                                                    <ImageButton.Source>
+                                                        <FontImageSource FontFamily="Material" Color="LightGray" Glyph="&#xe83a;"/>
+                                                    </ImageButton.Source>
+                                                </ImageButton>
+                                                <Label Grid.Column="2" Grid.Row="3" Text="{Binding InfoQtde}" TextColor="Black" FontSize="14" FontAttributes="Bold" Margin="-15,5,0,0"/>
+                                                <FlexLayout Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" JustifyContent="SpaceBetween">
+                                                    <Label Text="{Binding Price}" FontSize="16" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand" Margin="5,0,0,10"/>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Button Command="{Binding ComandLess}" TextColor="White" Text="_" FontSize="25" FontAttributes="Bold" BackgroundColor="Gray" WidthRequest="50" Padding="0,-25,0,0" Margin="0,-10,0,10"/>
+                                                        <Button Command="{Binding ComandPlus}" TextColor="Yellow" Text="+" FontSize="20" FontAttributes="Bold" BackgroundColor="Black" WidthRequest="50" Padding="0,5,0,5" Margin="0,-10,0,10"/>
+                                                    </StackLayout>
+                                                </FlexLayout>
+                                            </Grid>
+                                        </Frame>
+                                    </ScrollView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentView.Content>
+</ContentView>
