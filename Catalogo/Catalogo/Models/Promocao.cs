@@ -11,7 +11,7 @@ namespace Catalogo.Model
 
         public string Name { get; set; }
 
-        public int Category_id { get; set; }
+        public int? Category_id { get; set; }
 
         public List<Policy> Policies { get; set; }
 

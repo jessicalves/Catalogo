@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace Catalogo.Model
@@ -9,58 +11,95 @@ namespace Catalogo.Model
     {
         public ObservableCollection<Promocao> Promocoes { get; set; }
         public ObservableCollection<Produto> Produtos { get; set; }
+        public ObservableCollection<Produto> ProdutosSemPromocao { get; set; }
         public ObservableCollection<Policy> Policy { get; set; }
 
         public ItensCatalogoModel(List<Produto> ListProduto, List<Promocao> ListPromocao)
         {
-
-            Promocoes = new ObservableCollection<Promocao>();
-
-            foreach (var item in ListPromocao)
+            try
             {
-                Policy = new ObservableCollection<Policy>();
+                Promocoes = new ObservableCollection<Promocao>();
 
-                foreach (var policy in item.Policies)
+                foreach (var item in ListPromocao)
                 {
-                    Policy.Add(new Policy
+                    Policy = new ObservableCollection<Policy>();
+
+                    foreach (var policy in item.Policies)
                     {
-                        Min = policy.Min,
-                        Discount = policy.Discount
+                        Policy.Add(new Policy
+                        {
+                            Min = policy.Min,
+                            Discount = policy.Discount
+                        });
+                    }
+
+                    Produtos = new ObservableCollection<Produto>();
+                    ProdutosSemPromocao = new ObservableCollection<Produto>();
+
+                    foreach (var produto in ListProduto)
+                    {
+                        var naoTemPromocao = (from l in ListPromocao where l.Category_id == produto.Category_id select l).FirstOrDefault();
+
+                        if (naoTemPromocao == null)
+                        {
+                            ProdutosSemPromocao.Add(new Produto
+                            {
+                                Id = produto.Id,
+                                Name = produto.Name,
+                                Description = produto.Description,
+                                Photo = produto.Photo,
+                                Price = produto.Price,
+                                Category_id = produto.Category_id
+                            });
+                        }
+
+                        if (produto.Category_id == item.Category_id)
+                        {
+                            Produtos.Add(new Produto
+                            {
+                                Id = produto.Id,
+                                Name = produto.Name,
+                                Description = produto.Description,
+                                Photo = produto.Photo,
+                                Price = produto.Price,
+                                Category_id = produto.Category_id,
+                                Policy = Policy
+                            });
+                        }
+                    }
+
+                    Promocoes.Add(new Promocao
+                    {
+                        Name = item.Name,
+                        Category_id = item.Category_id,
+                        Produtos = Produtos
                     });
                 }
 
-                Policy.CollectionChanged += Policy_CollectionChanged;
-
-                Produtos = new ObservableCollection<Produto>();
-
-                foreach (var produto in ListProduto)
+                if (ProdutosSemPromocao.Count > 0)
                 {
-                    if (produto.Category_id == item.Category_id)
+                    Promocoes.Add(new Promocao
                     {
-                        Produtos.Add(new Produto
-                        {
-                            Id = produto.Id,
-                            Name = produto.Name,
-                            Description = produto.Description,
-                            Photo = produto.Photo,
-                            Price = produto.Price,
-                            Category_id = produto.Category_id,
-                            Policy = Policy
-                        });
-
-                        Produtos.CollectionChanged += Produtos_CollectionChanged;
-                    }
+                        Name = "Produtos",
+                        Category_id = null,
+                        Produtos = ProdutosSemPromocao
+                    });
                 }
 
-                Promocoes.Add(new Promocao
-                {
-                    Name = item.Name,
-                    Category_id = item.Category_id,
-                    Produtos = Produtos
-                });
+                ProdutosSemPromocao.CollectionChanged += ProdutosSemPromocao_CollectionChanged;
+                Policy.CollectionChanged += Policy_CollectionChanged;
+                Produtos.CollectionChanged += Produtos_CollectionChanged;
+                Promocoes.CollectionChanged += Promocoes_CollectionChanged;
             }
+            catch (Exception e)
+            {
+                var aux = e;
+            }
+        }
 
-            Promocoes.CollectionChanged += Promocoes_CollectionChanged;
+        private void ProdutosSemPromocao_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void Policy_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

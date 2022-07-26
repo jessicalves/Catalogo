@@ -4,15 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Catalogo.View.ItensCatalogoView">
     <ContentView.Content>
-        <CollectionView x:Name="CvPromocao" ItemsLayout="VerticalList" ItemsSource="{Binding Promocoes}" VerticalScrollBarVisibility="Always">
+        <CollectionView x:Name="CvPromocao" ItemsLayout="VerticalList" ItemsSource="{Binding Promocoes}" VerticalScrollBarVisibility="Always" VerticalOptions="StartAndExpand">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout BackgroundColor="#EEF0F5">
                         <Label Text="{Binding Name}" TextColor="Gray" FontSize="16" Margin="10,30,10,5"/>
-                        <CollectionView x:Name="CvProduto" ItemsSource="{Binding Produtos}" ItemsLayout="VerticalList">
+                        <CollectionView x:Name="CvProduto" ItemsSource="{Binding Produtos}" ItemsLayout="VerticalList" HeightRequest="700">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <ScrollView>
+                                    <StackLayout>
                                         <Frame BackgroundColor="White" HeightRequest="170" Margin="10" HasShadow="False">
                                             <Grid  RowSpacing="0" ColumnSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-10">
 
@@ -54,7 +54,7 @@
                                                 </FlexLayout>
                                             </Grid>
                                         </Frame>
-                                    </ScrollView>
+                                    </StackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
