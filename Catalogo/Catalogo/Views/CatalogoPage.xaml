@@ -20,7 +20,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="#EEF0F5" Spacing="0">
             <StackLayout VerticalOptions="StartAndExpand" x:Name="layMain" BackgroundColor="#EEF0F5"/>
-            <FlexLayout VerticalOptions="EndAndExpand" HeightRequest="60" BackgroundColor="Black" JustifyContent="Center">
+            <FlexLayout VerticalOptions="EndAndExpand" HeightRequest="70" BackgroundColor="Black" JustifyContent="Center">
                 <Button Margin="0,10" HorizontalOptions="Center" BackgroundColor="#FFFE9D" Text="COMPRAR ➙ R$ 0,00"/>
             </FlexLayout>
         </StackLayout>

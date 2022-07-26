@@ -37,7 +37,7 @@
                                                 <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="5,0,0,0">
                                                     <Label  Grid.Row="1" Text="{Binding Name}" MaxLines="1" Margin="0,5,0,0" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
                                                     <Label Grid.Row="2" Text="{Binding Description}" MaxLines="7" HorizontalTextAlignment="Start" FontSize="10" FontAttributes="Bold"/>
-                                                    <Label Grid.Row="3" BackgroundColor="Red" FontSize="10" Text="{Binding InfoDesconto}" HorizontalOptions="StartAndExpand" Margin="0,10,0,0" TextColor="White"/>
+                                                    <Label Grid.Row="3" BackgroundColor="Red" FontSize="10" Text="{Binding InfoDesconto}" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" TextColor="White"/>
                                                 </StackLayout>
                                                 <ImageButton Command="{Binding CommandFavorite}" Grid.Column="2" Grid.Row="1" Margin="30,-40,0,50" BackgroundColor="White">
                                                     <ImageButton.Source>
@@ -46,7 +46,7 @@
                                                 </ImageButton>
                                                 <Label Grid.Column="2" Grid.Row="3" Text="{Binding InfoQtde}" TextColor="Black" FontSize="14" FontAttributes="Bold" Margin="-15,5,0,0"/>
                                                 <FlexLayout Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" JustifyContent="SpaceBetween">
-                                                    <Label Text="{Binding Price}" FontSize="16" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand" Margin="5,0,0,10"/>
+                                                    <Label Text="{Binding Price}" FontSize="16" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand" Margin="5,5,0,10"/>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Button Command="{Binding ComandLess}" TextColor="White" Text="_" FontSize="25" FontAttributes="Bold" BackgroundColor="Gray" WidthRequest="50" Padding="0,-25,0,0" Margin="0,-10,0,10"/>
                                                         <Button Command="{Binding ComandPlus}" TextColor="#FFFE9D" Text="+" FontSize="20" FontAttributes="Bold" BackgroundColor="Black" WidthRequest="50" Padding="0,5,0,5" Margin="0,-10,0,10"/>
