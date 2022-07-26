@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns:pages="http://rotorgames.com"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Catalogo.ViewModels.ItensFilterView">
+
+    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Center" HasShadow="True" HeightRequest="350" CornerRadius="10">
+        <StackLayout Padding="0,10,0,0" BackgroundColor="White">
+            <Label FontSize="20" HorizontalOptions="Center" Text="Filtros" TextColor="Gray" />
+            <ScrollView>
+                <StackLayout>
+                    <CollectionView x:Name="FiltersListView" ItemsSource="{Binding ItensFilter}" HeightRequest="300">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label Text="{Binding name}" TextColor="Black" FontAttributes="Bold" Margin="0,10"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+            <Button x:Name="btnFechar" Text="Fechar" BackgroundColor="Black" TextColor="White" HorizontalOptions="CenterAndExpand" Margin="10" Clicked="btnFechar_Clicked"/>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>
+

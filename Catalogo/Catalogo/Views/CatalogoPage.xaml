@@ -13,7 +13,7 @@
                 <iostoolbarextensions:LeftHandToolbarItem Text="Filtro" Order="Primary" Priority="0"/>
             </On>
             <On Platform="Android">
-                <ToolbarItem Text="Filtro" IconImageSource="filter_list.png" Order="Primary" Priority="0" />
+                <ToolbarItem x:Name="btnFilter" Text="Filtro" IconImageSource="filter_list.png" Order="Primary" Priority="0" Clicked="btnFilter_Clicked"/>
             </On>
         </OnPlatform>
     </ContentPage.ToolbarItems>
