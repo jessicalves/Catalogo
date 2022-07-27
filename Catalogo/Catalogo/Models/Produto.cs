@@ -19,9 +19,10 @@ namespace Catalogo.Model
         public double Discount { get; set; }
         public ObservableCollection<Promocao> Promocao { get; set; }
         public ObservableCollection<Policy> Policy { get; set; }
-        int Qtde;
+        public int Qtde;
         public ICommand ComandPlus { get; set; }
         public ICommand ComandLess { get; set; }
+        public EventHandler OnQtdeChanged;
 
         public Produto()
         {
@@ -41,6 +42,8 @@ namespace Catalogo.Model
                 }
             }
 
+            OnQtdeChanged.Invoke(this, null);
+
             OnPropertyChanged(nameof(InfoQtde));
             OnPropertyChanged(nameof(InfoDesconto));
         }
@@ -59,6 +62,8 @@ namespace Catalogo.Model
 
             if (Qtde == 0)
                 Discount = 0;
+
+            OnQtdeChanged.Invoke(this, null);
 
             OnPropertyChanged(nameof(InfoQtde));
             OnPropertyChanged(nameof(InfoDesconto));

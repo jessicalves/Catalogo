@@ -15,7 +15,7 @@ namespace Catalogo.Model
         public ObservableCollection<Produto> ProdutosSemPromocao { get; set; }
         public ObservableCollection<Policy> Policy { get; set; }
 
-        public ItensCatalogoModel(List<Produto> ListProduto, List<Promocao> ListPromocao)
+        public ItensCatalogoModel(List<Produto> ListProduto, List<Promocao> ListPromocao, Button btnComprar)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Catalogo.Model
 
                         if (naoTemPromocao == null)
                         {
-                            ProdutosSemPromocao.Add(new Produto
+                            Produto prod = new Produto()
                             {
                                 Id = produto.Id,
                                 Name = produto.Name,
@@ -51,12 +51,27 @@ namespace Catalogo.Model
                                 Photo = produto.Photo,
                                 Price = produto.Price,
                                 Category_id = produto.Category_id
-                            });
+                            };
+
+                            prod.OnQtdeChanged += (sender, e) =>
+                            {
+                                double total = 0;
+                                foreach (var promo in Promocoes)
+                                {
+                                    foreach (var it in promo.Produtos)
+                                    {
+                                        total += it.Qtde * it.Price;
+                                    }
+                                }
+                                btnComprar.Text = $"COMPRAR ➙ R$ {total:C2}";
+                            };
+
+                            ProdutosSemPromocao.Add(prod);
                         }
 
                         if (produto.Category_id == item.Category_id)
                         {
-                            Produtos.Add(new Produto
+                            Produto prod = new Produto()
                             {
                                 Id = produto.Id,
                                 Name = produto.Name,
@@ -65,7 +80,21 @@ namespace Catalogo.Model
                                 Price = produto.Price,
                                 Category_id = produto.Category_id,
                                 Policy = Policy
-                            });
+                            };
+
+                            prod.OnQtdeChanged += (sender, e) =>
+                            {
+                                double total = 0;
+                                foreach (var promo in Promocoes)
+                                {
+                                    foreach (var it in promo.Produtos)
+                                    {
+                                        total += it.Qtde * it.Price;
+                                    }
+                                }
+                                btnComprar.Text = $"COMPRAR ➙ {total:C2}";
+                            };
+                            Produtos.Add(prod);
                         }
                     }
 
@@ -91,6 +120,7 @@ namespace Catalogo.Model
                 Policy.CollectionChanged += Policy_CollectionChanged;
                 Produtos.CollectionChanged += Produtos_CollectionChanged;
                 Promocoes.CollectionChanged += Promocoes_CollectionChanged;
+
             }
             catch (Exception e)
             {

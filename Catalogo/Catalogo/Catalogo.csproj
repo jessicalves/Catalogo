@@ -16,28 +16,36 @@
     <PackageReference Include="IOSToolbarExtensions" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.27" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Model\" />
     <None Remove="Controller\" />
     <None Remove="View\" />
-    <None Remove="Services\" />
     <None Remove="Font\" />
     <None Remove="Font\Material\" />
     <None Remove="IOSToolbarExtensions" />
     <None Remove="Font\Material\MaterialIcons-Regular.ttf" />
     <None Remove="Newtonsoft.Json" />
     <None Remove="Rg.Plugins.Popup" />
+    <None Remove="DataBase\" />
+    <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
     <Folder Include="Font\" />
     <Folder Include="Font\Material\" />
+    <Folder Include="DataBase\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Font\Material\MaterialIcons-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Services\AsyncLazy.cs" />
+    <Compile Remove="Services\Constants.cs" />
+    <Compile Remove="Services\IDataStore.cs" />
+    <Compile Remove="Services\ItemDatabase.cs" />
   </ItemGroup>
 </Project>

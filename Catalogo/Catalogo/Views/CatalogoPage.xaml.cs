@@ -12,7 +12,7 @@ namespace Catalogo.Views
 		public CatalogoPage ()
 		{
 			InitializeComponent ();
-			layMain.Children.Add(new ItensCatalogoView());
+			layMain.Children.Add(new ItensCatalogoView(btnComprar));
 		}
 
         async void btnFilter_Clicked(System.Object sender, System.EventArgs e)

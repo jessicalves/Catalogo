@@ -10,7 +10,7 @@ namespace Catalogo.View
 {
     public partial class ItensCatalogoView : ContentView
     {
-        public ItensCatalogoView()
+        public ItensCatalogoView(Button btnComprar)
         {
             InitializeComponent();
 
@@ -21,7 +21,7 @@ namespace Catalogo.View
             List<Produto> ObjetoProduto = JsonConvert.DeserializeObject<List<Produto>>(contentProduto);
             List<Promocao> ObjetoPromocao = JsonConvert.DeserializeObject<List<Promocao>>(contentPromocao);
           
-            BindingContext = new ItensCatalogoModel(ObjetoProduto, ObjetoPromocao);
+            BindingContext = new ItensCatalogoModel(ObjetoProduto, ObjetoPromocao, btnComprar);
         }
     }
 }
