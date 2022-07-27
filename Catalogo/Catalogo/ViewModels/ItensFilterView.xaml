@@ -21,7 +21,7 @@
                     </CollectionView>
                 </StackLayout>
             </ScrollView>
-            <Button x:Name="btnFechar" Text="Fechar" BackgroundColor="Black" TextColor="White" HorizontalOptions="CenterAndExpand" Margin="10" Clicked="btnFechar_Clicked"/>
+            <Button x:Name="btnFechar" Text="Fechar" BackgroundColor="Black" TextColor="White" Padding="10" HorizontalOptions="CenterAndExpand" Margin="10" Clicked="btnFechar_Clicked"/>
         </StackLayout>
     </Frame>
 </pages:PopupPage>

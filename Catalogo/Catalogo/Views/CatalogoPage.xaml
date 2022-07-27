@@ -4,13 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:iostoolbarextensions="clr-namespace:IOSToolbarExtensions;assembly=iOSToolbarExtensions"
     Title="Catálogo"
-    
     x:Class="Catalogo.Views.CatalogoPage">
 
     <ContentPage.ToolbarItems>
         <OnPlatform x:TypeArguments="ToolbarItem">
             <On Platform="iOS">
-                <iostoolbarextensions:LeftHandToolbarItem Text="Filtro" Order="Primary" Priority="0"/>
+                <iostoolbarextensions:LeftHandToolbarItem Text="Filtro" Order="Primary" Priority="0" Clicked="btnFilter_Clicked"/>
             </On>
             <On Platform="Android">
                 <ToolbarItem x:Name="btnFilter" Text="Filtro" IconImageSource="filter_list.png" Order="Primary" Priority="0" Clicked="btnFilter_Clicked"/>
