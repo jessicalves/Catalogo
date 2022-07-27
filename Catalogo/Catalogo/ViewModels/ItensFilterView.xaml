@@ -10,7 +10,7 @@
             <Label FontSize="20" HorizontalOptions="Center" Text="Filtros" TextColor="Gray" />
             <ScrollView>
                 <StackLayout>
-                    <CollectionView x:Name="FiltersListView" ItemsSource="{Binding ItensFilter}" HeightRequest="300">
+                    <CollectionView x:Name="FiltersListView" ItemsSource="{Binding ItensFilter}" HeightRequest="300" SelectionMode="Single" SelectionChanged="FiltersListView_SelectionChanged">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>

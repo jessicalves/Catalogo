@@ -25,6 +25,11 @@ namespace Catalogo.ViewModels
         {
             await PopupNavigation.Instance.PopAsync();
         }
+
+        void FiltersListView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        {
+            var current = e.CurrentSelection;
+        }
     }
 }
 

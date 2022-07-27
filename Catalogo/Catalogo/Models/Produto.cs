@@ -23,6 +23,7 @@ namespace Catalogo.Model
         public ICommand ComandPlus { get; set; }
         public ICommand ComandLess { get; set; }
         public EventHandler OnQtdeChanged;
+        public string PrecoFormatado { get; set; }
 
         public Produto()
         {
@@ -34,11 +35,14 @@ namespace Catalogo.Model
         {
             Qtde++;
 
-            foreach (var item in Policy)
+            if (Policy != null)
             {
-                if (item.Min == Qtde)
+                foreach (var item in Policy)
                 {
-                    Discount = item.Discount;
+                    if (item.Min == Qtde)
+                    {
+                        Discount = item.Discount;
+                    }
                 }
             }
 
@@ -50,13 +54,17 @@ namespace Catalogo.Model
 
         void DecrementarQtde()
         {
-            Qtde--;
+            if (Qtde > 0)
+                Qtde--;
 
-            foreach (var item in Policy)
+            if (Policy != null)
             {
-                if (item.Min == Qtde)
+                foreach (var item in Policy)
                 {
-                    Discount = item.Discount;
+                    if (item.Min == Qtde)
+                    {
+                        Discount = item.Discount;
+                    }
                 }
             }
 

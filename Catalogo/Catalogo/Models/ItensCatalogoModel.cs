@@ -50,7 +50,9 @@ namespace Catalogo.Model
                                 Description = produto.Description,
                                 Photo = produto.Photo,
                                 Price = produto.Price,
-                                Category_id = produto.Category_id
+                                PrecoFormatado = produto.Price.ToString("C"),
+                                Category_id = produto.Category_id,
+                                Policy = null
                             };
 
                             prod.OnQtdeChanged += (sender, e) =>
@@ -78,6 +80,7 @@ namespace Catalogo.Model
                                 Description = produto.Description,
                                 Photo = produto.Photo,
                                 Price = produto.Price,
+                                PrecoFormatado = produto.Price.ToString("C"),
                                 Category_id = produto.Category_id,
                                 Policy = Policy
                             };

@@ -19,6 +19,11 @@ namespace Catalogo.Views
         {
 			await PopupNavigation.Instance.PushAsync(new ItensFilterView());
 		}
+
+        async void btnComprar_Clicked(System.Object sender, System.EventArgs e)
+        {
+			await Navigation.PushAsync(new Carrinho());
+        }
     }
 }
 
