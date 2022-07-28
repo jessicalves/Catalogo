@@ -6,23 +6,34 @@ using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Catalogo.Views
-{	
-	public partial class CatalogoPage : ContentPage
-	{	
-		public CatalogoPage ()
-		{
-			InitializeComponent ();
-			layMain.Children.Add(new ItensCatalogoView(btnComprar));
-		}
+{
+    public partial class CatalogoPage : ContentPage
+    {
+        public ItensCatalogoView itensCatalogo;
+
+        public CatalogoPage()
+        {
+            InitializeComponent();
+
+            itensCatalogo = new ItensCatalogoView(btnComprar);
+            layMain.Children.Add(itensCatalogo);
+        }
 
         async void btnFilter_Clicked(System.Object sender, System.EventArgs e)
         {
-			await PopupNavigation.Instance.PushAsync(new ItensFilterView());
-		}
+            var itensFilter = new ItensFilterView();
+
+            itensFilter.OnIdFiltroChanged += (senderr, id) =>
+             {
+                 itensCatalogo.IdCategoria = id;
+             };
+
+            await PopupNavigation.Instance.PushAsync(itensFilter);
+        }
 
         async void btnComprar_Clicked(System.Object sender, System.EventArgs e)
         {
-			await Navigation.PushAsync(new Carrinho());
+            await Navigation.PushAsync(new Carrinho());
         }
     }
 }

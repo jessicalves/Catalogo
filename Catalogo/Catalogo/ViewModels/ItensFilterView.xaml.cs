@@ -11,6 +11,8 @@ namespace Catalogo.ViewModels
 {
     public partial class ItensFilterView : PopupPage
     {
+        public EventHandler <int>OnIdFiltroChanged;
+
         public ItensFilterView()
         {
             InitializeComponent();
@@ -26,9 +28,13 @@ namespace Catalogo.ViewModels
             await PopupNavigation.Instance.PopAsync();
         }
 
-        void FiltersListView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        async void FiltersListView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
         {
-            var current = e.CurrentSelection;
+            var current = (Filter)e.CurrentSelection[0];
+
+            OnIdFiltroChanged.Invoke(this, current.id);
+
+            await PopupNavigation.Instance.PopAsync();
         }
     }
 }

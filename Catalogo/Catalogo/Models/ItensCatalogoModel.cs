@@ -14,8 +14,55 @@ namespace Catalogo.Model
         public ObservableCollection<Produto> Produtos { get; set; }
         public ObservableCollection<Produto> ProdutosSemPromocao { get; set; }
         public ObservableCollection<Policy> Policy { get; set; }
+        public int IdCategoria;
+        public List<Produto> ListProduto;
+        public List<Promocao> ListPromocao;
+        public Button btnComprar;
 
         public ItensCatalogoModel(List<Produto> ListProduto, List<Promocao> ListPromocao, Button btnComprar)
+        {
+            this.ListProduto = ListProduto;
+            this.ListPromocao = ListPromocao;
+            this.btnComprar = btnComprar;
+            Popular();
+        }
+
+        private void ProdutosSemPromocao_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProdutosSemPromocao)));
+        }
+
+        private void Policy_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Policy)));
+        }
+
+        private void Promocoes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Promocoes)));
+        }
+
+        private void Produtos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Produtos)));
+        }
+
+        public void Limpar()
+        {
+            try
+            {
+                Promocoes.Clear();
+                ProdutosSemPromocao.Clear();
+                Produtos.Clear();
+                Policy.Clear();
+            }
+            catch (Exception e)
+            {
+                var aux = e;
+            }
+        }
+
+        public void Popular()
         {
             try
             {
@@ -68,7 +115,17 @@ namespace Catalogo.Model
                                 btnComprar.Text = $"COMPRAR ➙ R$ {total:C2}";
                             };
 
-                            ProdutosSemPromocao.Add(prod);
+                            if (IdCategoria != 0)
+                            {
+                                if (IdCategoria == prod.Category_id)
+                                {
+                                    ProdutosSemPromocao.Add(prod);
+                                }
+                            }
+                            else
+                            {
+                                ProdutosSemPromocao.Add(prod);
+                            }
                         }
 
                         if (produto.Category_id == item.Category_id)
@@ -97,16 +154,31 @@ namespace Catalogo.Model
                                 }
                                 btnComprar.Text = $"COMPRAR ➙ {total:C2}";
                             };
-                            Produtos.Add(prod);
+
+                            if (IdCategoria != 0)
+                            {
+                                if (IdCategoria == prod.Category_id)
+                                {
+                                    Produtos.Add(prod);
+                                }
+                            }
+                            else
+                            {
+                                Produtos.Add(prod);
+                            }
+
                         }
                     }
 
-                    Promocoes.Add(new Promocao
+                    if(Produtos.Count > 0)
                     {
-                        Name = item.Name,
-                        Category_id = item.Category_id,
-                        Produtos = Produtos
-                    });
+                        Promocoes.Add(new Promocao
+                        {
+                            Name = item.Name,
+                            Category_id = item.Category_id,
+                            Produtos = Produtos
+                        });
+                    }
                 }
 
                 if (ProdutosSemPromocao.Count > 0)
@@ -129,26 +201,6 @@ namespace Catalogo.Model
             {
                 var aux = e;
             }
-        }
-
-        private void ProdutosSemPromocao_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Policy_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Policy)));
-        }
-
-        private void Promocoes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Promocoes)));
-        }
-
-        private void Produtos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Produtos)));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
